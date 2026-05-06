@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { TrendingDown, ShieldCheck, Lightbulb } from "lucide-react";
+import { TrendingDown, ShieldCheck, Lightbulb, ArrowDown } from "lucide-react";
 import PredictionForm from "@/components/PredictionForm";
 import ResultsDisplay from "@/components/ResultsDisplay";
 import type { PlayerInput, PredictionResponse } from "@/lib/types";
@@ -128,12 +128,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Scroll Prompt ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+        className="flex flex-col items-center gap-1 text-gray-500"
+      >
+        <span className="text-xs uppercase tracking-widest">Try it out</span>
+        <ArrowDown className="h-4 w-4 animate-bounce" />
+      </motion.div>
+
       {/* ── Prediction Form & Results ── */}
       <div className="grid items-start gap-8 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.25, duration: 0.5 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15, duration: 0.5 }}
         >
           <PredictionForm
             onResult={setResult}
@@ -145,8 +157,9 @@ export default function HomePage() {
 
         <motion.div
           initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.35, duration: 0.5 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25, duration: 0.5 }}
           className="lg:sticky lg:top-24"
         >
           <ResultsDisplay
