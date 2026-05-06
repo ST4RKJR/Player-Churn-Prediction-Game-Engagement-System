@@ -12,16 +12,28 @@ export default function HomePage() {
   const [lastPlayerData, setLastPlayerData] = useState<PlayerInput | null>(null);
 
   return (
-    <div className="space-y-8 pb-16 pt-4">
-      {/* ── Heading ── */}
-      <section className="text-center">
-        <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+    <div className="space-y-10 pb-16 pt-4">
+      {/* ── Hero Heading ── */}
+      <section className="relative text-center">
+        <div className="hero-glow pointer-events-none absolute inset-0 -top-20" />
+
+        <motion.h1
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
+        >
           Predict <span className="gradient-text">Player Churn</span>
-        </h1>
-        <p className="mx-auto mt-3 max-w-xl text-gray-400">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="mx-auto mt-3 max-w-xl text-gray-400"
+        >
           Enter player behaviour data below and our ML model will predict the
           likelihood of churn along with tailored recommendations.
-        </p>
+        </motion.p>
       </section>
 
       <div className="grid items-start gap-8 lg:grid-cols-2">
